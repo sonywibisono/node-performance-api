@@ -5,6 +5,7 @@ const User = db.user;
 checkDuplicateUsernameOrEmail = (req, res, next) => {
   // Username
   User.findOne({
+    raw:true,
     where: {
       username: req.body.username
     }
@@ -18,6 +19,7 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
 
     // Email
     User.findOne({
+      raw:true,
       where: {
         email: req.body.email
       }

@@ -1,4 +1,4 @@
-const config = require("../config/config.js");
+const config = require("../config/db.config.js");
 const { Sequelize, DataTypes, Op } = require("sequelize");
 
 const sequelize = new Sequelize(
@@ -26,6 +26,7 @@ db.Op = Op;
 db.sequelize = sequelize;
 
 db.books = require("./book.model.js")(sequelize, Sequelize, DataTypes);
+db.customers = require("./customer.model.js")(sequelize, Sequelize, DataTypes);
 db.user = require("./user.model.js")(sequelize, Sequelize, DataTypes);
 db.role = require("./role.model.js")(sequelize, Sequelize, DataTypes);
 

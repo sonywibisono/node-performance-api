@@ -1,12 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const config = require("./app/config/config.js");
+const config = require("./app/config/db.config.js");
 
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:8080"
 };
 
 app.use(cors(corsOptions));
@@ -20,9 +20,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // database
 const db = require("./app/models");
 const Role = db.role;
-db.sequelize.sync().then(() => {
-  initial(); // Just use it in development, at the first time execution!. Delete it in production
-});
+// db.sequelize.sync().then(() => {
+//   initial(); // Just use it in development, at the first time execution!. Delete it in production
+// });
 
 // simple route
 app.get("/", (req, res) => {
@@ -31,6 +31,7 @@ app.get("/", (req, res) => {
 
 // api routes
 require("./app/routes/book.routes")(app);
+require("./app/routes/customer.routes")(app);
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 
